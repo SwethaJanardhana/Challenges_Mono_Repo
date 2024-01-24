@@ -5,6 +5,9 @@ const errorMessageElement = document.querySelector(".error");
 
 async function getUser(url) {
   const response = await fetch(url);
+  if (!response.ok) {
+    return null;
+  }
   const json = await response.json();
   return json.data;
 }

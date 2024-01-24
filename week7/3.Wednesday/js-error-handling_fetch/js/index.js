@@ -11,13 +11,13 @@ async function getUser(url) {
 
 document.querySelectorAll("button[data-url]").forEach((button) =>
   button.addEventListener("click", async (event) => {
-    const user = await getUser(event.target.dataset.url);
     try {
+      errorMessageElement.innerHTML = "";
+      const user = await getUser(event.target.dataset.url);
       userElement.innerHTML = `
       <h2>${user.first_name} ${user.last_name}</h2>
       <img alt="${user.first_name} ${user.last_name}" src="${user.avatar}"/>
       `;
-      errorMessageElement.innerHTML = "";
     } catch (error) {
       userElement.innerHTML = "";
       errorMessageElement.innerHTML = `Cannot fetch this user details : ${error}`;

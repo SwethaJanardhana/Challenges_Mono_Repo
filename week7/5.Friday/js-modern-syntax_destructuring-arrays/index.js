@@ -48,7 +48,8 @@ export const [student1, student2, student3, student4, student5] = [
   ...fourthFifthStudents,
 ];
 
-// export const [student1, [student2, student3], [student4, student5]] = nestedStudents;
+/* export const [student1, [student2, student3], [student4, student5]] =
+  nestedStudents; */
 
 // EXERCISE 6
 // Spread the values of the values array into the function call of the add function.

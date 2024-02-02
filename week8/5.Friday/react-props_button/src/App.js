@@ -35,7 +35,7 @@ function Button({ color, isDisabled, text, onEventName }) {
     <button
       onClick={onEventName}
       disabled={isDisabled}
-      style={{ backgroundColor: `${color}` }}
+      style={{ backgroundColor: color }}
     >
       {text}
     </button>

@@ -1,3 +1,3 @@
-export default function Image({ src, alt }) {
-  return <img className="round-image" src={src} alt={alt} />;
+export default function Image({ scrProp, altProp }) {
+  return <img className="round-image" src={scrProp} alt={altProp} />;
 }

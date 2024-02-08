@@ -1,10 +1,9 @@
-export default function Form({ setName, setEmail }) {
+export default function Form({ onCreateUser }) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form);
-    setName(formData.name);
-    setEmail(formData.email);
+    onCreateUser(formData.name, formData.email);
     event.target.reset();
   }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function App() {
   const [showMessage, setShowMessage] = useState(false);

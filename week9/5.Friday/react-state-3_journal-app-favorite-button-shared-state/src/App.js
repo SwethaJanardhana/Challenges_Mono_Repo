@@ -54,11 +54,10 @@ function App() {
   }
 
   function handleToggleFavorite(id) {
-    setEntries(
-      entries.map((entry) =>
-        entry.id === id ? { ...entry, isFavorite: !entry.isFavorite } : entry
-      )
+    const updateToggleEntries = entries.map((entry) =>
+      entry.id === id ? { ...entry, isFavorite: !entry.isFavorite } : entry
     );
+    setEntries(updateToggleEntries);
   }
 
   return (

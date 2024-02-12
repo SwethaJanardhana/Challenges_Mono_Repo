@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 
 export default function PokemonList() {
   const [pokemon, setPokemon] = useState([]);
-  const [page, setPage] = useState(0);
-  const [next, setNext] = useState("");
+  const [offset, setOffset] = useState(0);
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const limit = 20;
+
+  const URL = "https://pokeapi.co/api/v2/pokemon?offset=";
 
   useEffect(() => {
     async function loadPokemon() {
       try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?offset=${page}`
-        );
+        const response = await fetch(`${URL}${offset}`);
         const data = await response.json();
-        setNext(data.next);
+        setCount(data.count);
         setPokemon(data.results);
       } catch (error) {
         console.log(error);
@@ -20,33 +22,37 @@ export default function PokemonList() {
     }
 
     loadPokemon();
-  }, [page]);
+  }, [offset]);
 
   function handleNext() {
+    setOffset(offset + limit);
     setPage(page + 1);
   }
 
   function handlePrevious() {
+    setOffset(offset - limit);
     setPage(page - 1);
   }
 
   return (
     <main>
-      {page > 0 ? (
+      {offset > 0 ? (
         <button type="button" onClick={handlePrevious}>
           Previous Page
         </button>
       ) : (
         ""
       )}
-      {next !== null ? (
+      {offset <= count ? (
         <button type="button" onClick={handleNext}>
           Next Page
         </button>
       ) : (
         ""
       )}
-
+      <button type="button" disabled>{`Page: ${page} / ${Math.ceil(
+        count / limit
+      )}`}</button>
       <ul>
         {pokemon.map(({ name }) => (
           <li key={name}>{name}</li>

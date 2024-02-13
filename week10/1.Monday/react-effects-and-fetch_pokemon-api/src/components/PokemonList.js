@@ -14,15 +14,14 @@ export default function PokemonList() {
   }
 
   useEffect(() => {
-    {
-      loadPokemon;
-    }
     loadPokemon();
   }, []);
 
   return (
     <main>
       <ul>
+        The PokemonList is as follows:
+        <hr></hr>
         {pokemon.map(({ name }) => (
           <li key={name}>{name}</li>
         ))}

@@ -12,7 +12,7 @@ export default function PokemonList() {
   useEffect(() => {
     async function loadPokemon() {
       try {
-        const response = await fetch(`${URL}${offset}`);
+        const response = await fetch(`${URL}${offset}&limit=${limit}`);
         const data = await response.json();
         setCount(data.count);
         setPokemon(data.results);
@@ -53,11 +53,11 @@ export default function PokemonList() {
       <button type="button" disabled>{`Page: ${page} / ${Math.ceil(
         count / limit
       )}`}</button>
-      <ul>
+      <ol>
         {pokemon.map(({ name }) => (
           <li key={name}>{name}</li>
         ))}
-      </ul>
+      </ol>
     </main>
   );
 }

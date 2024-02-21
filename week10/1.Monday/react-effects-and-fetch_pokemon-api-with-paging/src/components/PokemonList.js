@@ -9,18 +9,18 @@ export default function PokemonList() {
 
   const URL = "https://pokeapi.co/api/v2/pokemon?offset=";
 
-  useEffect(() => {
-    async function loadPokemon() {
-      try {
-        const response = await fetch(`${URL}${offset}&limit=${limit}`);
-        const data = await response.json();
-        setCount(data.count);
-        setPokemon(data.results);
-      } catch (error) {
-        console.log(error);
-      }
+  async function loadPokemon() {
+    try {
+      const response = await fetch(`${URL}${offset}&limit=${limit}`);
+      const data = await response.json();
+      setCount(data.count);
+      setPokemon(data.results);
+    } catch (error) {
+      console.log(error);
     }
+  }
 
+  useEffect(() => {
     loadPokemon();
   }, [offset]);
 

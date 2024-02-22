@@ -4,7 +4,8 @@ import { volumes } from "@/lib/data";
 import Image from "next/image";
 
 export default function TheReturnOfTheKing() {
-  const volume = volumes.find(({ slug }) => slug === "the-return-of-the-king");
+  //const volume = volumes.find(({ slug }) => slug === "the-return-of-the-king"); /* desctructuring of object */
+  const volume = volumes.find((vol) => vol.slug === "the-return-of-the-king");
   return (
     <div>
       <Link href="/volumes">All Volumes</Link>

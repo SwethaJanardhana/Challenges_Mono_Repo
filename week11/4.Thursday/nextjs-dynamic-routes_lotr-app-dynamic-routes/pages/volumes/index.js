@@ -11,8 +11,8 @@ export default function Volumes() {
   }
 
   function handleRandomVolumePage() {
-    const randomVolumesIndex = getRandomElement(volumes);
-    const slug = randomVolumesIndex.slug;
+    const randomVolume = getRandomElement(volumes);
+    const slug = randomVolume.slug;
     router.push(`volumes/${slug}`);
   }
   return (

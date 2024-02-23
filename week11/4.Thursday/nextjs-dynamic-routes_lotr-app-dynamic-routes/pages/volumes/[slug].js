@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 
 export default function VolumeDetails() {
   const router = useRouter();
-  const { slug } = router.query;
+  const { slug: routerSlug } = router.query;
 
-  const volumeIndex = volumes.findIndex((volume) => volume.slug === slug);
+  const volumeIndex = volumes.findIndex((volume) => volume.slug === routerSlug);
 
   const volume = volumes[volumeIndex];
   const nextVolume = volumes[volumeIndex + 1];

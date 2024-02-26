@@ -7,12 +7,27 @@ import LeftArrow from "../../icon/arrow-left.svg";
 import RightArrow from "../../icon/arrow-right.svg";
 import LeftChevron from "../../icon/chevron-left.svg";
 
+const StyledMain = styled.main`
+  height: 100vh;
+  margin: 0;
+
+  @media (prefers-color-scheme: light) {
+    background-color: var(--color-clouds);
+    color: var(--color-earth);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--color-smoke);
+    background-color: var(--color-earth);
+  }
+`;
+
 const StyledSection = styled.div`
   background-color: ${({ $color }) => $color};
   display: flex;
 `;
 
-const StyledUl = styled.ul`
+const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style-type: none;
@@ -21,8 +36,18 @@ const StyledUl = styled.ul`
   color: white;
 `;
 
+const StyledLink = styled(Link)`
+  color: unset;
+  text-decoration: inherit;
+  display: flex;
+  text-align: ${({ $isLeft }) => ($isLeft ? "left" : "right")};
+  justify-content: ${({ $isLeft }) => ($isLeft ? "flex-start" : "flex-end")};
+  align-items: center;
+  gap: 0.5rem;
+`;
+
 const StyledImage = styled(Image)`
-  padding: 1.3rem;
+  padding: 1rem;
 `;
 
 export default function VolumeDetail() {
@@ -42,25 +67,25 @@ export default function VolumeDetail() {
   const { title, description, cover, books, color } = volume;
 
   return (
-    <>
-      <Link href="/volumes">
-        <span>
-          <LeftChevron /> All Volumes
-        </span>
-      </Link>
+    <StyledMain>
+      <StyledLink $isLeft href="/volumes">
+        <LeftChevron /> All Volumes
+      </StyledLink>
       <h1>{title}</h1>
       <p>{description}</p>
       <StyledSection $color={color}>
-        <StyledUl>
+        <StyledList>
           {books.map(({ ordinal, title }) => (
             <li key={title}>
-              <h3>{ordinal}</h3>
-              <h2>
+              <p>
+                <i>{ordinal}</i>
+              </p>
+              <p>
                 <strong>{title}</strong>
-              </h2>
+              </p>
             </li>
           ))}
-        </StyledUl>
+        </StyledList>
         <StyledImage
           src={cover}
           alt={`Cover image of ${title}`}
@@ -71,23 +96,19 @@ export default function VolumeDetail() {
 
       {previousVolume ? (
         <div>
-          <Link href={`/volumes/${previousVolume.slug}`}>
-            <span>
-              <LeftArrow />
-              Previous Volume: {previousVolume.title}
-            </span>
-          </Link>
+          <StyledLink $isLeft href={`/volumes/${previousVolume.slug}`}>
+            <LeftArrow />
+            Previous Volume: {previousVolume.title}
+          </StyledLink>
         </div>
       ) : null}
       {nextVolume ? (
         <div>
-          <Link href={`/volumes/${nextVolume.slug}`}>
-            <span>
-              Next Volume: {nextVolume.title} <RightArrow />
-            </span>
-          </Link>
+          <StyledLink href={`/volumes/${nextVolume.slug}`}>
+            Next Volume: {nextVolume.title} <RightArrow />
+          </StyledLink>
         </div>
       ) : null}
-    </>
+    </StyledMain>
   );
 }

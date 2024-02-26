@@ -3,9 +3,26 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { volumes } from "../../lib/data";
 import styled from "styled-components";
+import LeftArrow from "../../icon/arrow-left.svg";
+import RightArrow from "../../icon/arrow-right.svg";
+import LeftChevron from "../../icon/chevron-left.svg";
 
-const StyledDiv = styled.div`
+const StyledSection = styled.div`
   background-color: ${({ $color }) => $color};
+  display: flex;
+`;
+
+const StyledUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  color: white;
+`;
+
+const StyledImage = styled(Image)`
+  padding: 1.3rem;
 `;
 
 export default function VolumeDetail() {
@@ -25,37 +42,52 @@ export default function VolumeDetail() {
   const { title, description, cover, books, color } = volume;
 
   return (
-    <StyledDiv $color={color}>
-      <Link href="/volumes">← All Volumes</Link>
+    <>
+      <Link href="/volumes">
+        <span>
+          <LeftChevron /> All Volumes
+        </span>
+      </Link>
       <h1>{title}</h1>
       <p>{description}</p>
-      <ul>
-        {books.map(({ ordinal, title }) => (
-          <li key={title}>
-            {ordinal}: <strong>{title}</strong>
-          </li>
-        ))}
-      </ul>
-      <Image
-        src={cover}
-        alt={`Cover image of ${title}`}
-        width={140}
-        height={230}
-      />
+      <StyledSection $color={color}>
+        <StyledUl>
+          {books.map(({ ordinal, title }) => (
+            <li key={title}>
+              <h3>{ordinal}</h3>
+              <h2>
+                <strong>{title}</strong>
+              </h2>
+            </li>
+          ))}
+        </StyledUl>
+        <StyledImage
+          src={cover}
+          alt={`Cover image of ${title}`}
+          width={140}
+          height={230}
+        />
+      </StyledSection>
+
       {previousVolume ? (
         <div>
           <Link href={`/volumes/${previousVolume.slug}`}>
-            ← Previous Volume: {previousVolume.title}
+            <span>
+              <LeftArrow />
+              Previous Volume: {previousVolume.title}
+            </span>
           </Link>
         </div>
       ) : null}
       {nextVolume ? (
         <div>
           <Link href={`/volumes/${nextVolume.slug}`}>
-            Next Volume: {nextVolume.title} →
+            <span>
+              Next Volume: {nextVolume.title} <RightArrow />
+            </span>
           </Link>
         </div>
       ) : null}
-    </StyledDiv>
+    </>
   );
 }

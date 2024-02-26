@@ -11,6 +11,15 @@ const StyledImage = styled(Image)`
 const StyledUl = styled.ul`
   display: flex;
   list-style-type: none;
+  justify-content: centre;
+`;
+
+const StyledFigure = styled.figure`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 `;
 
 export default function Volumes() {
@@ -23,15 +32,16 @@ export default function Volumes() {
         {volumes.map((volume) => (
           <li key={volume.slug}>
             <Link href={`/volumes/${volume.slug}`}>
-              <figure>
+              <StyledFigure>
                 <StyledImage
                   src={volume.cover}
                   alt={`Cover image of ${volume.title}`}
                   width={60}
                   height={90}
+                  href={`/volumes/${volume.slug}`}
                 />
                 <figcaption>{volume.title}</figcaption>
-              </figure>
+              </StyledFigure>
             </Link>
           </li>
         ))}

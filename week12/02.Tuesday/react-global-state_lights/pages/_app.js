@@ -13,7 +13,7 @@ const initialArray = [
   { id: 8, name: "Office", isOn: false },
 ];
 
-let isDimmed = false;
+let isDimmed = true;
 
 export default function App({ Component, pageProps }) {
   const [lights, setLights] = useState(initialArray);
@@ -25,6 +25,8 @@ export default function App({ Component, pageProps }) {
       )
     );
   }
+
+  isDimmed = lights.every((light) => light.isOn === false);
 
   function handleAllLightsOn() {
     isDimmed = false;

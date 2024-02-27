@@ -1,6 +1,6 @@
 import GlobalStyle from "../styles";
 import Layout from "../components/Layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const initialArray = [
   { id: 1, name: "Living Room", isOn: false },
@@ -13,12 +13,13 @@ const initialArray = [
   { id: 8, name: "Office", isOn: false },
 ];
 
-let isDimmed = true;
-let isAllLightsOffButtonDisabled = false;
-let isAllLightsOnButtonDisabled = false;
-
 export default function App({ Component, pageProps }) {
   const [lights, setLights] = useState(initialArray);
+
+  let isDimmed = true;
+  let isAllLightsOffButtonDisabled = false;
+  let isAllLightsOnButtonDisabled = false;
+  let isAllLightsOn = false;
 
   function handleToggle(toggleId) {
     setLights(
@@ -27,22 +28,28 @@ export default function App({ Component, pageProps }) {
       )
     );
   }
-
-  isDimmed = lights.every((light) => light.isOn === false);
-
   function handleAllLightsOn() {
-    isDimmed = false;
-    isAllLightsOffButtonDisabled = false;
-    isAllLightsOnButtonDisabled = true;
     setLights(lights.map((light) => ({ ...light, isOn: true })));
   }
 
   function handleAllLightsOff() {
-    isDimmed = true;
-    isAllLightsOffButtonDisabled = true;
-    isAllLightsOnButtonDisabled = false;
     setLights(lights.map((light) => ({ ...light, isOn: false })));
   }
+
+  isAllLightsOn = lights.every((light) => light.isOn === true);
+  isDimmed = lights.every((light) => light.isOn === false);
+
+  if (isAllLightsOn) {
+    isAllLightsOffButtonDisabled = false;
+    isAllLightsOnButtonDisabled = true;
+  } else if (isDimmed) {
+    isAllLightsOffButtonDisabled = true;
+    isAllLightsOnButtonDisabled = false;
+  } else {
+    isAllLightsOffButtonDisabled = false;
+    isAllLightsOnButtonDisabled = false;
+  }
+
   return (
     <Layout isDimmed={isDimmed}>
       <GlobalStyle />

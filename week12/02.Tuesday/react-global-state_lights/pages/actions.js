@@ -4,7 +4,8 @@ import QuickActions from "../components/QuickActions";
 export default function Actions({
   handleAllLightsOff,
   handleAllLightsOn,
-  isAllLightsDisabled,
+  isAllLightsOffButtonDisabled,
+  isAllLightsOnButtonDisabled,
 }) {
   return (
     <>
@@ -13,7 +14,8 @@ export default function Actions({
       <QuickActions
         handleAllLightsOff={handleAllLightsOff}
         handleAllLightsOn={handleAllLightsOn}
-        isAllLightsDisabled={isAllLightsDisabled}
+        isAllLightsOffButtonDisabled={isAllLightsOffButtonDisabled}
+        isAllLightsOnButtonDisabled={isAllLightsOnButtonDisabled}
       />
     </>
   );

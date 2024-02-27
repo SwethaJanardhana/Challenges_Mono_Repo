@@ -29,6 +29,13 @@ export default function App({ Component, pageProps }) {
   }
 
   isDimmed = lights.every((light) => light.isOn === false);
+  if (isDimmed) {
+    isAllLightsOffButtonDisabled = true;
+    isAllLightsOnButtonDisabled = false;
+  } else {
+    isAllLightsOffButtonDisabled = false;
+    isAllLightsOnButtonDisabled = true;
+  }
 
   function handleAllLightsOn() {
     isDimmed = false;

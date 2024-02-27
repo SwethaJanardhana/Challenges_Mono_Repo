@@ -1,6 +1,6 @@
 import GlobalStyle from "../styles";
 import Layout from "../components/Layout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const initialArray = [
   { id: 1, name: "Living Room", isOn: false },

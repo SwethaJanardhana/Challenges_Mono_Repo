@@ -13,12 +13,10 @@ const initialArray = [
   { id: 8, name: "Office", isOn: false },
 ];
 
-let isDimmed = true;
-let isAllLightsOffButtonDisabled = false;
-let isAllLightsOnButtonDisabled = false;
-
 export default function App({ Component, pageProps }) {
   const [lights, setLights] = useState(initialArray);
+  let isDimmed = true;
+  let isAllLightsDisabled = false;
 
   function handleToggle(toggleId) {
     setLights(
@@ -30,24 +28,20 @@ export default function App({ Component, pageProps }) {
 
   isDimmed = lights.every((light) => light.isOn === false);
   if (isDimmed) {
-    isAllLightsOffButtonDisabled = true;
-    isAllLightsOnButtonDisabled = false;
+    isAllLightsDisabled = true;
   } else {
-    isAllLightsOffButtonDisabled = false;
-    isAllLightsOnButtonDisabled = true;
+    isAllLightsDisabled = false;
   }
 
   function handleAllLightsOn() {
     isDimmed = false;
-    isAllLightsOffButtonDisabled = false;
-    isAllLightsOnButtonDisabled = true;
+    isAllLightsDisabled = false;
     setLights(lights.map((light) => ({ ...light, isOn: true })));
   }
 
   function handleAllLightsOff() {
     isDimmed = true;
-    isAllLightsOffButtonDisabled = true;
-    isAllLightsOnButtonDisabled = false;
+    isAllLightsDisabled = true;
     setLights(lights.map((light) => ({ ...light, isOn: false })));
   }
   return (
@@ -59,8 +53,7 @@ export default function App({ Component, pageProps }) {
         toggleLight={handleToggle}
         handleAllLightsOn={handleAllLightsOn}
         handleAllLightsOff={handleAllLightsOff}
-        isAllLightsOffButtonDisabled={isAllLightsOffButtonDisabled}
-        isAllLightsOnButtonDisabled={isAllLightsOnButtonDisabled}
+        isAllLightsDisabled={isAllLightsDisabled}
       />
     </Layout>
   );

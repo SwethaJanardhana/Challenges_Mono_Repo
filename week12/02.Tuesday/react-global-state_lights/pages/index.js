@@ -1,11 +1,6 @@
 import Link from "../components/Link";
 
-export default function HomePage({
-  lights,
-  toggleLight,
-  handleAllLightsOff,
-  handleAllLightsOn,
-}) {
+export default function HomePage({ lights }) {
   const lightsOn = lights.filter((light) => light.isOn).length;
   return (
     <div>

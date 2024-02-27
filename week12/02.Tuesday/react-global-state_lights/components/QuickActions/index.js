@@ -10,13 +10,23 @@ const StyledQuickActions = styled.div`
 export default function QuickActions({
   handleAllLightsOff,
   handleAllLightsOn,
+  isAllLightsOffButtonDisabled,
+  isAllLightsOnButtonDisabled,
 }) {
   return (
     <StyledQuickActions>
-      <Button type="button" onClick={handleAllLightsOff}>
+      <Button
+        type="button"
+        onClick={handleAllLightsOff}
+        disabled={isAllLightsOffButtonDisabled}
+      >
         Turn all lights off
       </Button>
-      <Button type="button" onClick={handleAllLightsOn}>
+      <Button
+        type="button"
+        onClick={handleAllLightsOn}
+        disabled={isAllLightsOnButtonDisabled}
+      >
         Turn all lights on
       </Button>
     </StyledQuickActions>

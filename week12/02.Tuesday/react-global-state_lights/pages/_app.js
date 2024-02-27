@@ -14,6 +14,8 @@ const initialArray = [
 ];
 
 let isDimmed = true;
+let isAllLightsOffButtonDisabled = false;
+let isAllLightsOnButtonDisabled = false;
 
 export default function App({ Component, pageProps }) {
   const [lights, setLights] = useState(initialArray);
@@ -30,11 +32,15 @@ export default function App({ Component, pageProps }) {
 
   function handleAllLightsOn() {
     isDimmed = false;
+    isAllLightsOffButtonDisabled = false;
+    isAllLightsOnButtonDisabled = true;
     setLights(lights.map((light) => ({ ...light, isOn: true })));
   }
 
   function handleAllLightsOff() {
     isDimmed = true;
+    isAllLightsOffButtonDisabled = true;
+    isAllLightsOnButtonDisabled = false;
     setLights(lights.map((light) => ({ ...light, isOn: false })));
   }
   return (
@@ -46,6 +52,8 @@ export default function App({ Component, pageProps }) {
         toggleLight={handleToggle}
         handleAllLightsOn={handleAllLightsOn}
         handleAllLightsOff={handleAllLightsOff}
+        isAllLightsOffButtonDisabled={isAllLightsOffButtonDisabled}
+        isAllLightsOnButtonDisabled={isAllLightsOnButtonDisabled}
       />
     </Layout>
   );

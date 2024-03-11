@@ -8,6 +8,8 @@ export default function handler(request, response) {
     lastName: chance.last(),
     age: chance.age(),
     profession: chance.profession(),
+    twitterName: chance.twitter(),
+    geohash: chance.geohash(),
   };
   response.status(200).json(character);
 }

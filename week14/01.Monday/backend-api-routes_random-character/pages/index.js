@@ -34,6 +34,8 @@ export default function HomePage() {
           <Styledth>Lastname</Styledth>
           <Styledth>Age</Styledth>
           <Styledth>Profession</Styledth>
+          <Styledth>Twitter-Name</Styledth>
+          <Styledth>Geohash</Styledth>
         </tr>
       </thead>
       <tbody>
@@ -42,6 +44,8 @@ export default function HomePage() {
           <Styledtd>{data.lastName}</Styledtd>
           <Styledtd>{data.age}</Styledtd>
           <Styledtd>{data.profession}</Styledtd>
+          <Styledtd>{data.twitterName}</Styledtd>
+          <Styledtd>{data.geohash}</Styledtd>
         </tr>
       </tbody>
     </StyledTable>

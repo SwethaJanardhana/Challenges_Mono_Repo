@@ -15,7 +15,6 @@ export default function Products() {
   if (!data) {
     return;
   }
-  console.log("data...", data);
   return (
     <ul>
       {data.map((product) => (

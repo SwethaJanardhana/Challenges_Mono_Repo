@@ -18,6 +18,7 @@ export default function ProductForm() {
       body: JSON.stringify(productData),
     });
     if (response.ok) {
+      alert("Product added successfully...");
       mutate();
     }
     event.target.reset();
@@ -28,15 +29,15 @@ export default function ProductForm() {
       <StyledHeading>Add a new Fish</StyledHeading>
       <StyledLabel htmlFor="name">
         Name:
-        <input type="text" id="name" name="name" />
+        <input type="text" id="name" name="name" required />
       </StyledLabel>
       <StyledLabel htmlFor="description">
         Description:
-        <input type="text" id="description" name="description" />
+        <input type="text" id="description" name="description" required />
       </StyledLabel>
       <StyledLabel htmlFor="price">
         Price:
-        <input type="number" id="price" name="price" min="0" />
+        <input type="number" id="price" name="price" min="0" required />
       </StyledLabel>
       <StyledLabel htmlFor="currency">
         Currency:

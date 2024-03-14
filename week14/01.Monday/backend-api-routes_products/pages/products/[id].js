@@ -29,9 +29,6 @@ export default function ProductServices() {
     return;
   }
 
-  if (data.status === 404) {
-    return <h1>Page not found</h1>;
-  }
   console.log(data);
   return (
     <>

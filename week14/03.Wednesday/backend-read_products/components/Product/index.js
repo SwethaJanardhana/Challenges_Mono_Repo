@@ -19,7 +19,7 @@ export default function Product() {
   function handleRating(rating) {
     let array = [];
     for (let i = 0; i < rating; i++) {
-      array.push("⭐️");
+      array.push("❤️ ");
     }
     return array;
   }
@@ -35,7 +35,7 @@ export default function Product() {
       {data.reviews.length ? (
         <ul>
           {data.reviews.map((review) => (
-            <li key={review.id}>
+            <li key={review._id}>
               <p>
                 {review.title} - {review.text}
               </p>

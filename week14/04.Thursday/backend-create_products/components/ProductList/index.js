@@ -1,6 +1,11 @@
 import useSWR from "swr";
-import { StyledHeading, StyledList } from "./ProductList.styled";
-import { StyledLink } from "../Link/Link.styled";
+import {
+  StyledHeading,
+  StyledList,
+  StyledDelete,
+  StyledListItem,
+  StyledLink,
+} from "./ProductList.styled";
 
 export default function ProductList() {
   const { data, isLoading } = useSWR("/api/products");
@@ -18,9 +23,10 @@ export default function ProductList() {
       <StyledHeading>Available Fishes</StyledHeading>
       <StyledList>
         {data.map((product) => (
-          <li key={product._id}>
+          <StyledListItem key={product._id}>
             <StyledLink href={`/${product._id}`}>{product.name}</StyledLink>
-          </li>
+            <StyledDelete />
+          </StyledListItem>
         ))}
       </StyledList>
     </>

@@ -20,7 +20,7 @@ export default function CommentForm() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(commentData),
+      body: JSON.stringify({ productId: id, comment: commentData }),
     });
     if (response.ok) {
       mutate();
@@ -30,7 +30,7 @@ export default function CommentForm() {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <StyledHeading>Add a new Fish</StyledHeading>
+      <StyledHeading>Add a Comment</StyledHeading>
       <StyledLabel htmlFor="comment">
         Title:
         <input type="text" id="title" name="title" required />

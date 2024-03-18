@@ -16,33 +16,23 @@ export default async function handler(request, response) {
     response.status(200).json(product);
   }
 
-  if (request.method === "POST") {
-    try {
-      const productId = request.body.productId;
-      const reviewData = request.body.comment;
-      const createdReview = await Review.create(reviewData);
-      const reviewId = createdReview._id;
-      const product = await Product.findByIdAndUpdate(productId, {
-        $push: { reviews: reviewId },
-      });
-      if (!product) {
-        return response.status(404).json({ status: "Product not found" });
-      }
-
-      response.status(201).json({ status: "Review created" });
-    } catch (error) {
-      console.log(error);
-      response.status(400).json({ error: error.message });
-    }
+  if (request.method === "PUT") {
+    const updatedProduct = request.body;
+    await Product.findByIdAndUpdate(id, updatedProduct);
+    response.status(200).json({ status: "Product updated scuuessfully." });
   }
 
   if (request.method === "DELETE") {
-    const commentId = request.body.commentId;
-    const productId = request.body.productId;
-    await Review.findByIdAndDelete(commentId);
-    await Product.findByIdAndUpdate(productId, {
-      $pop: { reviews: commentId },
-    });
-    response.status(200).json({ status: "Comment deleted successfully." });
+    const product = await Product.findById(id).populate("reviews");
+    if (!product) {
+      return response.status(404).json({ status: "Not Found" });
+    }
+    if (product.reviews.length > 0) {
+      product.reviews.forEach(async (comment) => {
+        await Review.findByIdAndDelete(comment._id);
+      });
+    }
+    await Product.findByIdAndDelete(id);
+    response.status(200).json({ status: "Product deleted successfully." });
   }
 }

@@ -2,7 +2,6 @@ import useSWR from "swr";
 import {
   StyledHeading,
   StyledList,
-  StyledDelete,
   StyledListItem,
   StyledLink,
 } from "./ProductList.styled";
@@ -25,7 +24,6 @@ export default function ProductList() {
         {data.map((product) => (
           <StyledListItem key={product._id}>
             <StyledLink href={`/${product._id}`}>{product.name}</StyledLink>
-            <StyledDelete />
           </StyledListItem>
         ))}
       </StyledList>

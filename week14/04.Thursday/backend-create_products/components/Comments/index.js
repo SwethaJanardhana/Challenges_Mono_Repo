@@ -1,8 +1,9 @@
 import {
   StyledList,
   StyledListItem,
-  StyledDelete,
 } from "@/components/Comments/Comments.styled";
+
+import { StyledButtonIcon } from "@/components/Button/Button.styled";
 
 export default function Comments({ reviews, onCommentDelete }) {
   function handleRating(rating) {
@@ -25,7 +26,11 @@ export default function Comments({ reviews, onCommentDelete }) {
             <span>{review.text}</span>
             <span>
               {handleRating(review.rating)}
-              <StyledDelete onClick={() => onCommentDelete(review._id)} />
+              <StyledButtonIcon onClick={() => onCommentDelete(review._id)}>
+                <span role="image" aria-label="delete a comment">
+                  ❌
+                </span>
+              </StyledButtonIcon>
             </span>
           </StyledListItem>
         ))}

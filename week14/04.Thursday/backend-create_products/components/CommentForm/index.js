@@ -15,7 +15,7 @@ export default function CommentForm() {
     const formData = new FormData(event.target);
     const commentData = Object.fromEntries(formData);
 
-    const response = await fetch("/api/products/${id}", {
+    const response = await fetch("/api/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

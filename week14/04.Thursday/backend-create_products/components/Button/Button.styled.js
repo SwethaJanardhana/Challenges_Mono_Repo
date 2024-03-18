@@ -11,3 +11,17 @@ export const StyledButton = styled.button`
     cursor: pointer;
   }
 `;
+
+export const StyledButtonIcon = styled.button`
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    background-color: #ddd;
+    border: 1px solid grey;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;

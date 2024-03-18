@@ -32,7 +32,7 @@ export default function Product() {
     }
   }
 
-  async function handleDeleteProduct(id) {
+  async function handleDeleteProduct() {
     const response = await fetch(`/api/products/${id}`, {
       method: "DELETE",
     });
@@ -63,12 +63,7 @@ export default function Product() {
         </span>
       </button>
       &nbsp;&nbsp;&nbsp;
-      <button
-        type="button"
-        onClick={() => {
-          handleDeleteProduct(id);
-        }}
-      >
+      <button type="button" onClick={handleDeleteProduct}>
         <span aria-label="delete button" role="delete">
           ❌
         </span>
@@ -86,6 +81,7 @@ export default function Product() {
           isEditable={true}
         />
       )}
+      <br></br>
       <StyledLink href="/">Back to all</StyledLink>
     </ProductCard>
   );
